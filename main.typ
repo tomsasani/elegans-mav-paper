@@ -60,7 +60,7 @@ Persistent lesions therefore become "engines of genetic diversity" by generating
 Remarkably, some lesions can persist for _decades_ in human blood, liver and bronchial tissue @Spencer-Chapman2025-er.
 
 #figure(
-  image("Artboard 8.png", width: 80%), caption: [*Persistent lesions can create multi-allelic mutations.* DNA lesions (shown as red triangles) occur after exposure to an exogenous or endogenous mutagen. If lesions are not removed or repaired prior to DNA replication, error-prone translesion synthesis (TLS) polymerases might incorporate an incorrect base opposite the lesion, creating a lesion-mutation duplex. Lesion-mutation duplexes resolve into double-stranded mutations following a subsequent round of DNA replication. If a lesion continues to evade DNA repair machinery, it may eventually serve as a template for the incorporation of a different incorrect base (shown as a green circle).], 
+  image("fig/Artboard 8.png", width: 80%), caption: [*Persistent lesions can create multi-allelic mutations.* DNA lesions (shown as red triangles) occur after exposure to an exogenous or endogenous mutagen. If lesions are not removed or repaired prior to DNA replication, error-prone translesion synthesis (TLS) polymerases might incorporate an incorrect base opposite the lesion, creating a lesion-mutation duplex. Lesion-mutation duplexes resolve into double-stranded mutations following a subsequent round of DNA replication. If a lesion continues to evade DNA repair machinery, it may eventually serve as a template for the incorporation of a different incorrect base (shown as a green circle).], 
 ) <fig-1>
 
 === Transgenerational DNA damage in #cel
@@ -120,7 +120,7 @@ We chose these genotoxins for three reasons: first, because they primarily gener
 We further filtered the SNVs in EMS, DMS, and MMS-treated strains (*Materials and Methods*) to remove variants in low-complexity sequences, producing a final callset of 69,839 alkylation-induced SNVs.
 
 #figure(
-  image("meta.png", width: 80%), caption: [*Number of genotoxin-treated strains and aggregate mutation counts in #vlk*. *a)* Number of strains corresponding to each mutagenesis approach. 475 strains were used in mutation accumulation (M.A.) experiments rather than being treated with genotoxins. DMS: dimethyl sulfate, EMS: ethyl methylsulfonate, HU: hydroxyurea, MMS: methyl methanesulfonate. *b)* Number of SNV mutations attributed to each mutagen, aggregated across all mutagenized strains. In this study, we exclusively analyzed mutations caused by the alkylating agents DMS, EMS, and MMS.]
+  image("fig/meta.png", width: 80%), caption: [*Number of genotoxin-treated strains and aggregate mutation counts in #vlk*. *a)* Number of strains corresponding to each mutagenesis approach. 475 strains were used in mutation accumulation (M.A.) experiments rather than being treated with genotoxins. DMS: dimethyl sulfate, EMS: ethyl methylsulfonate, HU: hydroxyurea, MMS: methyl methanesulfonate. *b)* Number of SNV mutations attributed to each mutagen, aggregated across all mutagenized strains. In this study, we exclusively analyzed mutations caused by the alkylating agents DMS, EMS, and MMS.]
 ) <fig-2>
 
 
@@ -132,7 +132,7 @@ After stringent filtering (*Materials and Methods*), we required candidate MAVs 
 In total, we found 138 high-confidence MAVs out of 69,839 total SNVs (\~0.25%).
 
 #figure(
-  image("Artboard 9.png", width: 100%), caption: [*Evidence for multi-allelism at mutated sites in #cel.* *a)* Diagram of aligned Illumina sequencing reads at a single-nucleotide variant observed in a _polk-1_ mutant strain treated with 0.08mM DMS. Sequencing reads are sorted by start position and colored by read orientation (light grey: aligned to the forward strand, dark grey: aligned to the reverse strand). Alleles aligned to the mutated reference nucleotide are colored. For simplicity of visualization, we show a maximum of 50 reads in each subplot. Legend shows the counts of each allele aligned to the forward or reverse strand. *b)* Dotted vertical line shows the number of SNVs at which we observed >=3 reads supporting an MAV. In each of 100 trials, we calculated the number of SNVs at which we observed evidence for multi-allelism using a random strain's sequencing reads. The distribution of "spurious" MAVs identified in each trial is shown as a blue histogram. *c)* We performed the random sampling procedure described in *b)* using varying thresholds on the number of reads required to support a candidate MAV. The blue line shows the number of identified MAVs at each read threshold. The red line shows the enrichment of empirical vs. spurious MAVs identified at each threshold.]
+  image("fig/Artboard 9.png", width: 100%), caption: [*Evidence for multi-allelism at mutated sites in #cel.* *a)* Diagram of aligned Illumina sequencing reads at a single-nucleotide variant observed in a _polk-1_ mutant strain treated with 0.08mM DMS. Sequencing reads are sorted by start position and colored by read orientation (light grey: aligned to the forward strand, dark grey: aligned to the reverse strand). Alleles aligned to the mutated reference nucleotide are colored. For simplicity of visualization, we show a maximum of 50 reads in each subplot. Legend shows the counts of each allele aligned to the forward or reverse strand. *b)* Dotted vertical line shows the number of SNVs at which we observed >=3 reads supporting an MAV. In each of 100 trials, we calculated the number of SNVs at which we observed evidence for multi-allelism using a random strain's sequencing reads. The distribution of "spurious" MAVs identified in each trial is shown as a blue histogram. *c)* We performed the random sampling procedure described in *b)* using varying thresholds on the number of reads required to support a candidate MAV. The blue line shows the number of identified MAVs at each read threshold. The red line shows the enrichment of empirical vs. spurious MAVs identified at each threshold.]
 ) <fig-3>
 
 We were initially suspicious that MAVs were simply a result of sequencing error or alignment artifacts.
@@ -188,7 +188,7 @@ MAVs did not exhibit greater levels of strand bias than biallelic SNVs, and "emp
 We hypothesize that nearly all spurious MAVs occur due to alignment errors in low-complexity, repetitive regions of the genome.
 
 #figure(
-  image("entropy.png", width: 60%), caption: [*Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 153 "empirical" MAVs and $n$ = 1,254 "random" MAVs aggregated across 100 trials. We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV.]
+  image("fig/entropy.png", width: 60%), caption: [*Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 153 "empirical" MAVs and $n$ = 1,254 "random" MAVs aggregated across 100 trials. We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV.]
 ) <fig-s1>
 
 
@@ -225,7 +225,7 @@ As discussed below, if EMS happens to cause greater F1/F2 lethality than MMS or 
 We discuss some other challenges of identifying and interpreting MAV enrichments in the *Discussion.*
 
 #figure(
-  image("multiallelic_by_mutagen.png", width: 60%),
+  image("fig/multiallelic_by_mutagen.png", width: 60%),
   caption: [*Enrichment of MAVs after treatment with three alkylating agents.*
   Using N strains treated with DMS, EMS, or MMS, we calculated the number of SNVs at which we observed 3 or more reads supporting a multi-allelic variant (MAV).
   The total number of MAVs we identified in strains treated with a given mutagen is shown as a vertical dotted line.
@@ -267,7 +267,7 @@ Thus, in YA animals, all sperm are mature gametes that will not undergo mitosis 
 
 
 #figure(
-  image("Artboard 6_2 (1).png", width:70%), caption: 
+  image("fig/Artboard 6_2 (1).png", width:70%), caption: 
   [*Lesions must persist until the $P_4$ cell stage in an F1 to create multi-allelism.*
   In this toy diagram, we track the fate of a single lesion-containing DNA strand during the first few cell divisions of #cel embryogenesis.
   An F1 zygote might be fertilized by a sperm cell or oocyte that harbors a DNA lesion (shown as a red triangle) on either the forward or reverse strand (the probability of a lesion occurring on both strands at the same nucleotide is vanishingly small).
@@ -339,7 +339,7 @@ For example, mutagens like EMS almost exclusively create C #sym.arrow T mutation
 While we likely failed to observe many of these large-effect alleles due to survivor bias (any worms with lethal null alleles were not sequenced), we do find that EMS-derived SNVs occurred at more conserved nucleotides in the #cel genome (@fig-s2).
 
 #figure(
-  image("phylop.png", width:70%), caption: 
+  image("fig/phylop.png", width:70%), caption: 
   [*EMS-derived mutations occur in more conserved regions of the genome.*
   
 ]
