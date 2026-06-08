@@ -2,7 +2,7 @@
 #let cel = [_C. elegans_]
 
 #set text(
-  font: "New Computer Modern"
+  font: "Libertinus Serif"
 )
 
 #show ref: set text(fill: blue)
@@ -25,16 +25,16 @@
 \
 
 #figure(
-  image("entropy.png", width: 60%), caption: [*Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 153 "empirical" MAVs and $n$ = 1,254 "random" MAVs aggregated across 100 trials. We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV.]
+  image("fig/entropy.png", width: 60%), caption: [*Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 153 "empirical" MAVs and $n$ = 1,254 "random" MAVs aggregated across 100 trials. We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV.]
 ) <fig-s1>
 
 
 #figure(
-  image("phylop.png", width:70%), caption: 
+  image("fig/phylop.png", width:70%), caption: 
   [*EMS-derived mutations occur in more conserved regions of the genome.*
   
 ]
 )<fig-s2>
 
-#bibliography("Paperpile - References - Jun 4.bib", style: "plos")
+// #bibliography("Paperpile - References - Jun 5.bib", style: "plos")
 
