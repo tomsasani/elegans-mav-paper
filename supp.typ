@@ -24,17 +24,15 @@
 #align(center)[corresponding authors: #link("tom.sasani\@utah.edu")[tom.sasani\@utah.edu], #link("aquinlan\@genetics.utah.edu")[aquinlan\@genetics.utah.edu]]
 \
 
-#figure(
-  image("fig/entropy.png", width: 60%), caption: [*Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 153 "empirical" MAVs and $n$ = 1,254 "random" MAVs aggregated across 100 trials. We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV.]
-) <fig-s1>
+#set align(center)
+#image("fig/entropy.png", width: 60%, )
+#set align(left)
+#set text(size: 10pt)
+#block([Supplementary Figure 1: *Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 136 "empirical" MAVs and $n$ = 1,254 "spurious" MAVs identified among randomly sampled SNVs across 100 trials. We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV.])<fig-s1>
 
 
-#figure(
-  image("fig/phylop.png", width:70%), caption: 
-  [*EMS-derived mutations occur in more conserved regions of the genome.*
-  
-]
-)<fig-s2>
-
-// #bibliography("Paperpile - References - Jun 5.bib", style: "plos")
-
+#set align(center)
+#image("fig/phylop.png", width: 60%, )
+#set align(left)
+#set text(size: 10pt)
+#block([Supplementary Figure 2: *EMS-derived mutations occur in more conserved regions of the genome.*])<fig-s2>
