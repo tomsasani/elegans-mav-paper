@@ -28,10 +28,15 @@
 #align(center)[corresponding authors: #link("tom.sasani\@utah.edu")[tom.sasani\@utah.edu], #link("aquinlan\@genetics.utah.edu")[aquinlan\@genetics.utah.edu]]
 \
 
+== TODO
+- how novel is the persistence of DNA damage from gamete to zygote?
+- nail down the exact details of the Wang et al. hypothesis re: DNA damage in sperm
+- contextualize results a bit w/r/t human/non-worm species
+
 == Abstract
 
 How long does DNA damage last? 
-Exogenous and endogenous mutagens create bulky adducts, chemical modifications, and DNA breaks. 
+Exogenous and endogenous mutagens create bulky adducts, chemical modifications, and generate single- or double-stranded DNA breaks. 
 These lesions may be incorrectly bypassed by error-prone polymerases or improperly repaired by DNA repair machinery, leaving behind mutations.
 A phenomenon called "lesion segregation," in which DNA lesions evade repair and persist for multiple cell divisions, was recently documented in tumors and healthy somatic tissues from mice and humans, respectively. 
 Persistent lesions serve as templates for multiple rounds of error-prone translesion synthesis, generating multi-allelic variants (MAVs).
@@ -75,6 +80,7 @@ The authors speculated that mature _C. elegans_ sperm, which have a highly-compa
 Only after those sperm have fertilized a zygote can their damaged DNA be repaired by maternal TMEJ.
 These results demonstrate that radiation-induced DNA damage can persist from a parental gamete to a fertilized zygote, and that DNA damage repair in the embryo has consequences for future generations.
 
+
 === A large-scale mutagenesis experiment in #cel
 In 2020, Volkova _et al._ @Volkova2020-gt mutagenized 54 _C. elegans_ strains with 12 DNA damaging agents. 
 Most of these strains harbored homozygous loss-of-function (LOF) alleles in genes related to DNA replication and repair, including translesion synthesis (_polk-1_) and nucleotide excision repair (_xpa-1_, _xpc-1_, and _xpf-1_).  
@@ -86,6 +92,8 @@ Given the developmental lineage of #cel @Sulston1977-gh @Sulston1983-zz, we esti
 Certain mutagens appear to cause greater multi-allelism than others, though the stochastic nature of post-zygotic lesion segregation and the effects of survival bias make it difficult to confidently interpret these differences.
 Nevertheless, our results demonstrate that multiple forms of DNA damage can persist from generation to generation in #cel. 
 These persistent lesions become potent engines of mutagenesis, influencing the genetic diversity of future generations long after they arise.
+
+// While the presence of sperm-derived DNA damage in the early embryo is not new (https://www.pnas.org/doi/epdf/10.1073/pnas.76.1.435), we demonstrate that the consequences of embryonic repair (or lack thereof) are easily and readily detectable.
 
 == Results
 
@@ -113,16 +121,16 @@ As it’s succinctly described in #vlk:
 #quote()[
 "_The zygotes which lead to the F1 generation provide a single cell bottleneck where mutations of exposed male and female germ cells are fixed before being clonally amplified during #cel development and passed on to the next generation in a Mendelian ratio._"]
 
-All F1 animals should therefore possess a maximum of two unique alleles at a given site. 
-
 After sequencing, #vlk performed read alignment, called single-nucleotide, insertion/deletion (indel), and structural variants (SVs), and removed recurrent artifactual mutations across strains.
 In total, the authors identified 135,348 high-confidence single-nucleotide variants (SNVs) in 54 strains treated with genotoxins or maintained in M.A. experiments.
 Here, we limit our analyses to the subset of SNVs observed in strains treated with three alkylating agents: ethyl methanesulfonate (EMS), dimethyl sulfate (DMS), and methyl methanesulfonate (MMS).
 We chose these genotoxins for three reasons: first, because they primarily generated single-nucleotide and multi-nucleotide (as opposed to indel or SV) mutations; second, because they were among the most potent mutagens used in the study; and third, because worms treated with these three genotoxins were mutagenized at the same life stage (young adult; YA). 
 We further filtered the SNVs in EMS, DMS, and MMS-treated strains to remove variants in low-complexity sequences (*Materials and Methods*), producing a final callset of 68,900 alkylation-induced SNVs (@fig-2).
+As discussed above, we would expect each of these SNVs to be biallelic, as each sequenced population of worms was derived from a single F1 animal.
+
 
 #figure(
-  image("fig/Figure 2.png", width: 80%), caption: [*Number of genotoxin-treated strains and aggregate mutation counts in #vlk*. *a)* Number of strains corresponding to each mutagenesis approach. 475 strains were used in mutation accumulation (M.A.) experiments rather than being treated with genotoxins. DMS: dimethyl sulfate, EMS: ethyl methylsulfonate, HU: hydroxyurea, MMS: methyl methanesulfonate. *b)* Number of SNVs attributed to each mutagen, aggregated across all mutagenized strains. Darker bars indicate numbers of filtered SNVs, while shaded bars indicate the total number of SNVs before stringent filtering (see *Materials and Methods*). In this study, we exclusively analyzed mutations caused by the alkylating agents DMS, EMS, and MMS.]
+  image("fig/Figure 2.png", width: 80%), caption: [*Number of genotoxin-treated strains and aggregate mutation counts in #vlk*. *a)* Number of strains corresponding to each mutagenesis approach. 475 strains were used in mutation accumulation (M.A.) experiments rather than being treated with genotoxins. DMS: dimethyl sulfate, EMS: ethyl methylsulfonate, HU: hydroxyurea, MMS: methyl methanesulfonate. *b)* Number of SNVs attributed to each mutagen, aggregated across all mutagenized strains. Darker bars indicate numbers of filtered SNVs, while shaded bars indicate the total number of SNVs before stringent filtering (see *Materials and Methods*). Numbers to the right of each bar indicate the number of filtered SNVs used in this study (unfiltered counts are shown in parentheses). In this study, we exclusively analyzed mutations caused by the alkylating agents DMS, EMS, and MMS.]
 ) <fig-2>
 
 
@@ -144,12 +152,12 @@ In each strain, we calculated the number of randomly sampled SNVs at which 3 or 
   inset: 8pt,
   radius: 4pt,
   [*#underline[Box 2]: Generating a null expectation for the number of MAVs.*
-We first searched for multi-allelic evidence at all 68,900 SNVs in 763 strains treated with DMS, EMS, or MMS. 
-In a given strain, we we asked whether there were 3+ sequencing reads supporting a 'third' allele at each of $S$ ostensibly biallelic SNVs. 
+We first searched for multi-allelic evidence at the set of $M$ SNVs (where $|M| = 68,900$) in 763 strains treated with DMS, EMS, or MMS. 
+In a given strain, we we asked whether there were 3+ sequencing reads supporting a 'third' allele at each of the strain's ostensibly biallelic SNVs $S; S in M$. 
 If so, we classified the site as a multi-allelic variant (MAV). 
 We then performed 100 random sampling trials in each strain.
-In each trial, we randomly sampled $m$ mutations from the complete mutation callset $M in.not S$.
-At each site in $m$, we then asked if there were 3+ sequencing reads supporting a non-reference allele; since these random SNVs should be homozygous reference in the focal strain, we considered any non-reference evidence to be evidence for a "spurious" MAV.]
+In each trial, we randomly sampled $R$ from the mutation callset $M in.not S$, such that $|R| = |S|$.
+At each site in $R$, we then asked if there were 3+ sequencing reads supporting a non-reference allele; since these random SNVs should be homozygous reference in the focal strain, we considered any non-reference evidence to be evidence for a "spurious" MAV.]
 ) <box-2>
 // #show figure.where(
 //   kind: table
@@ -197,7 +205,8 @@ We note that our random sampling strategy is imperfect, and likely produces an i
 In a given strain with $S$ SNVs, we randomly sample $S$ mutations from the complete SNV callset; in strains with large $S$, we are guaranteed to randomly sample the same sites multiple times over the course of 100 trials.
 Moreover, the majority of mutations in the callset are derived from EMS; thus, "spurious" MAVs will be biased toward sequence contexts that are preferentially damaged by EMS.
 
-MAVs did not exhibit greater levels of strand bias than biallelic SNVs, and "empirical" MAVs occurred in higher-complexity sequence than "spurious" MAVs identified at randomly sampled sites #link(<fig-s1>)[Supplementary Fig. 1].
+MAVs did not exhibit greater levels of strand bias than biallelic SNVs ($chi^(2)$ $p = 0.34$).
+"Spurious" MAVs (at randomly sampled sites) occurred in lower-complexity sequence than "empirical" MAVs (two-sided Kolmogorov-Smirnov $p = 2.9 times 10^(-10)$), while empirical MAVs and biallelic SNVs occured in similarly high-complexity sequences (two-sided KS $p = 0.12$; #link(<fig-s1>)[Supplementary Fig. 1]).
 We hypothesize that nearly all spurious MAVs occur due to alignment errors in low-complexity, repetitive regions of the genome.
 
 // === Multi-allelic mutations don't appear to be artifacts
@@ -229,7 +238,7 @@ We hypothesize that nearly all spurious MAVs occur due to alignment errors in lo
 Using our stringently filtered MAV callset, we measured the degree to which different genotoxins induced multi-allelic variants.
 Compared to the null expectation, MMS caused the greatest enrichment of MAVs in #cel, followed by DMS and EMS.
 It is challenging to attribute these differences in MAV enrichment to the characteristics of specific mutagens, however (see *Discussion*). 
-#vlk also note that they observed significant batch effects when treating worms with EMS. 
+// #vlk also note that they observed significant batch effects when treating worms with EMS. 
 // As discussed below, if EMS happens to cause greater F1/F2 lethality than MMS or DMS, #vlk would have sequenced fewer (or a less diverse) population of F1 offspring, limiting our ability to detect MAVs.
 // We discuss some other challenges of identifying and interpreting MAV enrichments in the *Discussion.*
 
@@ -268,7 +277,7 @@ It is challenging to attribute these differences in MAV enrichment to the charac
 
 Convinced that these multi-allelic mutations were "real" sequence variants, we next considered how they might occur.
 Let's first assume that genotoxin treatment occurs at the young adult stage (YA) in a P0 animal (other mutagens were administered at different larval stages).
-In #cel hermaphrodites, spermatogenesis and oogenesis occur in sequence; spermatogenesis begins at the fourth larval stage (L4) and completes at the YA stage, while oogenesis begins at YA and continues through adulthood (cite).
+In #cel hermaphrodites, spermatogenesis and oogenesis occur in sequence; spermatogenesis begins at the fourth larval stage (L4) and completes at the YA stage, while oogenesis begins at YA and continues through adulthood @Hubbard2005-ky.
 Thus, in YA animals, all sperm are mature gametes that will not undergo mitosis before fertilizing an oocyte.
 
 
@@ -300,6 +309,8 @@ In this analysis, we demonstrate that genotoxin treatment creates DNA lesions th
 In line with recent results @Wang2023-lg, we find that transgenerational DNA damage can produce a measurable phenotype (here, the presence of multi-allelic variation) in the offspring of a mutagenized animal.
 Our work provides a foundation for future analyses of transgenerational DNA damage inheritance, and suggests a number of new questions.
 
+https://pubmed.ncbi.nlm.nih.gov/284360/
+
 === How likely is gametic mosaicism due to inherited lesions?
 
 The probability that a DNA lesion occurs on both strands at the same nucleotide in a P0 gamete (or, that it occurs at the same nucleotide in both gametes) is extremely small.
@@ -316,9 +327,10 @@ These "late" MAVs would be present in correspondingly fewer mature gametes, and 
 Conversely, if a lesion is rapidly repaired during embryogenesis, it might generate _de novo_ mutations that appear biallelic in subsequent generations. 
 For example, if a lesion is incorrectly bypassed by TLS polymerase during the $P_3 #sym.arrow P_4$ cell division, a lesion-mutation duplex would be present in the $P_4$ cell (@fig-5). 
 But if the lesion is repaired or removed during the next cell cycle, the gametes produced by that worm would only contain one of two alleles, and its offspring would appear to be biallelic (@fig-5).
+We therefore suspect that the early zygote inherits much more damage than is suggested by MAV prevalence; many biallelic SNVs observed in the sequenced F2+ offspring likely result from inherited lesions, as well.
 
 === Missing MAVs due to survival bias
-MAVs might also be invisible due to the strength of genotoxin treatement. If a P0 animal were treated with an extremely high dose of mutagen, the F2 progeny of a heterozygous F1 could exhibit very high embryonic lethality.
+MAVs might also be invisible due to the strength of genotoxin treatement. If a P0 animal were treated with an extremely high dose of mutagen, the F2 progeny of a heterozygous F1 could exhibit very high embryonic lethality as a consequence of newly homozygous null alleles.
 If an F1's gametes are mosiac for multiple derived alleles at a given site, fewer F2 progeny provide us fewer opportunities to observe a "third" or "fourth" allele at a given site.
 In other words, MAV detection is complicated by survival bias; high mutagen doses create more lesions, and these lesions might generate multi-allelic variation, but those multiple alleles may not segregate into living offspring.
 Ultimately, then, our ability to detect MAVs is dependent on at least three distinct factors: 1) the random segregation of lesion-containing strands into somatic or germline progenitors, 2) the efficiency of lesion repair in the early embryo (i.e., the duration of lesion persistence), and 3) the relative fertility of the F1 and its progeny following mutagen exposure.
@@ -333,6 +345,7 @@ Roerink _et al._ (2012) hypothesize that TLS, as opposed to error-free repair vi
 The early embryo simply does not have time to perform NER, and rapid TLS bypass is preferred.
 What's more, #cel suppress DNA damage checkpoint activation during the first few embryonic cell divisions, and rely on TLS polymerases to prevent replication fork collapse @Holway2006-pd.
 The same appears to be true in _Xenopus_ and _Drosophila_ @Lo-Furno2022-zq @Kermi2015-nd, suggesting that the rapidly dividing early embryo is unable to perform proper quality control and instead relies on TLS to bypass DNA damage that would otherwise stall the cell cycle @Ohkumo2006-em.
+In "normal" worms that have not been treated with genotoxin, it remains to be seen whether endogenous DNA damage is likely to persist, or if damage that accumulates during zygotic genome activation (https://pubmed.ncbi.nlm.nih.gov/26073019/) could cause MAVs, as well.
 
 
 
@@ -340,13 +353,13 @@ The same appears to be true in _Xenopus_ and _Drosophila_ @Lo-Furno2022-zq @Kerm
 
 Compared to a null expectation, we observed that certain mutagens led to a greater enrichment of MAVs than others.
 Despite causing the highest number of mutations per unit dose (@fig-2), EMS treatment led to a relatively modest enrichment of MAVs.
-Without additional experimental data, it is difficult to conclusively say whether genotoxins like DMS are more potent engines of multi-allelism, or create longer-lasting DNA lesions.
-As discussed above, our ability to detect MAVs relies on both the segregation of lesion-containing strands into germline progenitors, as well as the lethality induced by the mutagen itself.
-For example, mutagens like EMS almost exclusively create C #sym.arrow T mutations, and often generate premature stop codons, strong loss-of-function, and null alleles @Kutscher2014-ei.
+Without additional experimental data, it is difficult to conclusively say whether genotoxins like DMS are more potent engines of multi-allelism or create longer-lasting DNA lesions.
+As discussed above, our ability to detect MAVs relies on a combination of factors: the segregation of lesion-containing strands into germline progenitors, the efficiency of embryonic DNA repair, and the lethality induced by a mutagen itself.
+For example, mutagens like EMS almost exclusively create C:G #sym.arrow T:A mutations, and often generate premature stop codons, strong loss-of-function, and null alleles @Kutscher2014-ei.
 EMS mutagenesis may therefore prove more lethal to F2+ progeny, limiting our ability to sequence the full complement of _de novo_ alleles present in an F1's germline.
 While we likely failed to observe many of these large-effect alleles due to survivor bias (any worms with lethal null alleles were not sequenced), we did find that EMS-derived SNVs occurred at more conserved nucleotides in the #cel genome (#link(<fig-s2>)[Supplementary Fig. 2]).
 
-Moreover, our analysis in this manuscript deals only with single-nucleotide mutations;  many of the mutagens we analyze also create insertions, deletions, and larger structural variants.
+Moreover, our analysis in this manuscript deals only with single-nucleotide mutations;  many of the mutagens we analyze also create insertions, deletions, and larger structural variants @Volkova2020-gt.
 Certain mutagens are more likely to generate null alleles via these types of mutations, potentially leading to even greater F2+ lethality and a reduced ability to detect MAVs.
 Future work may be able to uncover the relative amounts of multi-allelism generated by different mutagens.
 
@@ -358,20 +371,25 @@ Indeed, prior work has shown that mature #cel sperm have a limited ability to re
 In this study, we analyzed mutagens that were applied to P0 hermaphrodites at the young adult (YA) stage of development.
 At this time point, #cel spermatogenesis is complete (having begun at the early L3 stage and ended at late L4), and mature sperm will not undergo any additional cell divisions before they fertilize F1 zygotes @Hubbard2005-ky.
 Oocytes, on the other hand, begin oogenesis after spermatogenesis and continually divide into adulthood. 
-As a result, it seems quite likely that most MAVs are caused by persistent lesions inherited from #cel sperm, as these lesions will not have had an opportunity to be repaired prior to zygote fertilization.
-Supporting this hypothesis, Wang _et al._ reported embryonic lethality in the offspring of males irradiated at the late L4 stage, but not in the offspring of males irradiated at the late L3 or early L4 stage @Wang2023-lg. 
+As a result, it seems likely that most MAVs are caused by persistent lesions inherited from #cel sperm, as these lesions will not have had an opportunity to be repaired prior to zygote fertilization.
+Supporting this hypothesis, Wang _et al._ reported embryonic lethality in the offspring of males irradiated at the late L4 stage (when spermatogenesis is complete), but not in the offspring of males irradiated at the late L3 or early L4 stage (when spermatogenesis is ongoing) @Wang2023-lg. 
 Future experiments, in which male and "feminized" hermaphrodites are separately mutagenized, could provide insight into the relative ability of sperm and oocytes to repair DNA lesions caused by alkylating agents.
+
+We also note that our proposed model of multi-allelic mutation generation suggests that damage must be repaired within four cell divisions to ensure a lack of multi-allelism. 
+#cel likely begin activating the zygotic genome by the 4-cell stage, meaning that the worm zygote only relies on maternally-deposited repair machinery for two divisions. 
+This implies, however, that #cel oocytes with more defective repair machinery might contribute to an increased likelihood of lesion persistence to (at least) the 4-cell stage. https://pmc.ncbi.nlm.nih.gov/articles/PMC4303375/
+
 
 === Implications for human _de novo_ mutagenesis
 
 A recent study of human germline _de novo_ mutation (DNM) reported a positive correlation between maternal age and the number of DNMs on paternal haplotypes @Gao2019-yg. 
-This unexpected result has been attributed to mutations that occur during early embryogenesis; because the early human zygote relies on maternally-deposited machinery to replicate and repair DNA, older oocytes may contribute more defective machinery @Braude1988-hc @Dobson2004-ks @Zhang2009-am @Wong2016-un @Gao2019-yg.
+This unexpected result has been attributed to mutations that occur during early embryogenesis; because the early human zygote relies on maternally-deposited machinery to replicate and repair DNA, older oocytes may contribute more defective machinery, leading to elevated rates of post-zygotic mutation @Braude1988-hc @Dobson2004-ks @Zhang2009-am @Wong2016-un @Gao2019-yg.
 Our results demonstrate that in #cel, DNA damage is passed down from gametes to the early zygote, providing a pool of lesions that must be repaired during embryonic development.
 Thus, transgenerational DNA damage — which is improperly repaired by maternally-deposited machinery — may be an underappreciated source of human _de novo_ mutations, and possibly even multi-allelic mosaicism in human tissues.
 === What about indels and SVs?
 
 Finally, we note that multi-allelic SNVs are not the only kind of multi-allelism that might be caused by a persistent lesion. 
-#vlk demonstrated that certain genotoxins create a diverse range of DNA mutations, from SNVs and multi-nucleotide variants to insertions, deletions, tandem repeat expansions, and larger structural variants. 
+#vlk demonstrated that genotoxins create a diverse range of DNA mutations, from SNVs and multi-nucleotide variants to insertions, deletions, tandem repeat expansions, and larger structural variants. 
 Here, as a proof of concept, we focused on three alkylating agents that predominantly generate SNVs. 
 Using long-read sequencing technologies, like the PacBio and Oxford Nanopore Technologies platforms, as well as new technologies that enable accurate sequencing in low-complexity regions of the genome, like Element Biosciences, we can begin to investigate the myriad consequences of persistent lesions on other kinds of DNA mutation.
 For example, a persistent lesion might template the incorporation of two unique SNV alleles, as well as a small deletion; or an SNV allele and two unique indels; and so on.
@@ -401,13 +419,16 @@ We then filtered the reads (adapter trimming, quality filtering, length filterin
 ```
 fastp --in1 $fq1 \
       --in2 $fq2 \
-      --out1 $fq1_out \
-      --out2 $fq2_out \
+      --out1 $fq1_clean \
+      --out2 $fq2_clean \
+      --unpaired1 $fq1_unpaired \
+      --unpaired2 $fq2_unpaired \
       --thread $threads \
+      -V
 
 ```
 
-We aligned the cleaned FASTQ files to the WBcel235/ce11 build of the #cel reference genome (downloaded from the UCSC Genome Browser) via `singularity` using the NVIDIA Parabricks `fq2bam` utility (v4.6.0) on a NVIDIA H100 GPU, which produced sorted, duplicate-marked BAM files:
+We aligned the cleaned FASTQ files to the WBcel235/ce11 build of the #cel reference genome (downloaded from the UCSC Genome Browser) via `singularity` @Trudgian2025-yr using the NVIDIA Parabricks `fq2bam` utility (v4.6.0) on a NVIDIA H100 GPU, which produced sorted, duplicate-marked BAM files:
 
 ```
 singularity exec --cleanenv \
@@ -419,7 +440,7 @@ singularity exec --cleanenv \
         /path/to/parabricks.sif \
         pbrun fq2bam \
             --ref $ref \
-            --in-fq $fq1 $fq2 \
+            --in-fq $fq1_clean $fq2_clean \
             --out-bam /path/to/output.bam \
             --read-group-sm $sample_name \
             --read-group-lb lib1 \
@@ -468,7 +489,7 @@ After filtering, we retained a total of 68,900 SNVs.
 
 === Identifying multi-allelic variants <sec-identifing-mavs>
 
-At every SNV in a particular strain, we used `pysam` to query the strain's BAM file at the variant position.
+At every SNV in a particular strain, we used `pysam`  to query the strain's BAM file at the variant position.
 We counted the number of sequencing reads that supported a particular single-nucleotide allele at each site, excluding the following:
 
 #align(left)[
@@ -482,14 +503,13 @@ We counted the number of sequencing reads that supported a particular single-nuc
 ]
 
 Although we marked duplicates during alignment, we additionally removed all reads that shared the same aligned start and end coordinates.
-We also required all 
 
 We also measured the strand bias at all SNVs. 
 
 
 === Calculating the expected number of multi-allelic variants
 
-To determine whether we identified more MAVs than expected given the background rate of Illumina sequencing error, we took a simple random sampling approach.
+To determine whether we identified more MAVs than expected given the background rate of Illumina sequencing error and alignment artifacts, we took a simple random sampling approach.
 For a given strain $i$ with $M_i$ SNV mutations, we took a random sample of $M_i$ mutations from the entire collection of $M$ SNVs (without replacement, and excluding the strain of interest). 
 We then searched for evidence of multi-allelic variants at these random SNVs using the focal strain's BAM file, as described #link(<sec-identifing-mavs>)[above]. 
 At these randomly-sampled SNVs, we considered any read that passed the above filters and supported a non-reference allele to be evidence of multi-allelic variation.
