@@ -159,47 +159,7 @@ We then performed 100 random sampling trials in each strain.
 In each trial, we randomly sampled $R$ from the mutation callset $M in.not S$, such that $|R| = |S|$.
 At each site in $R$, we then asked if there were 3+ sequencing reads supporting a non-reference allele; since these random SNVs should be homozygous reference in the focal strain, we considered any non-reference evidence to be evidence for a "spurious" MAV.]
 ) <box-2>
-// #show figure.where(
-//   kind: table
-// ): set figure.caption(position: top)
 
-// #figure(caption: [*Permutation strategy for measuring MAV enrichment.* In each trial, we permute the strain labels associated with each identified biallelic SNV. We then calculate the amount of evidence for a non-reference allele at each permuted site. ], 
-//   grid(
-//     columns: (auto, auto, auto), 
-//     gutter: 0.5em,      
-//    table(
-//     columns: (auto, auto),
-//     inset: 5pt,
-//     align: horizon,
-//     table.header(
-//       [*Strain*], [*Position*],
-//     ),
-//     "CD0001a",
-//     [`chrI:100-101`],
-//     "CD0001b",
-//     [`chrI:200-201`],
-//     "...",
-//     "...",
-//     "CD0999a",
-//     [`chrX:9000000-9000001`],
-//   ),
-//   align(horizon + center)[*permute* strain labels\ $arrow.ccw$],
-//   table(
-//     columns: (auto, auto),
-//     inset: 5pt,
-//     align: horizon,
-//     table.header(
-//       [*Strain*], [*Position*],
-//     ),
-//     "CD0423b",
-//     [`chrI:100-101`],
-//     "CD0901c",
-//     [`chrI:200-201`],
-//     "...",
-//     "...",
-//     "CD0039a",
-//     [`chrX:9000000-9000001`],))
-// )
 Compared to this null expectation, MAVs occurred far more often than expected by chance (@fig-3).
 We note that our random sampling strategy is imperfect, and likely produces an inflated number of "spurious" MAVs.
 In a given strain with $S$ SNVs, we randomly sample $S$ mutations from the complete SNV callset; in strains with large $S$, we are guaranteed to randomly sample the same sites multiple times over the course of 100 trials.
@@ -208,19 +168,6 @@ Moreover, the majority of mutations in the callset are derived from EMS; thus, "
 MAVs did not exhibit greater levels of strand bias than biallelic SNVs ($chi^(2)$ $p = 0.34$).
 "Spurious" MAVs (at randomly sampled sites) occurred in lower-complexity sequence than "empirical" MAVs (two-sided Kolmogorov-Smirnov $p = 2.9 times 10^(-10)$), while empirical MAVs and biallelic SNVs occured in similarly high-complexity sequences (two-sided KS $p = 0.12$; #link(<fig-s1>)[Supplementary Fig. 1]).
 We hypothesize that nearly all spurious MAVs occur due to alignment errors in low-complexity, repetitive regions of the genome.
-
-// === Multi-allelic mutations don't appear to be artifacts
-
-
-// First, we calculated the strand bias at candidate MAVs, and found that empirical MAVs did not exhibit greater strand bias than MAVs identified using randomly-sampled SNVs (Chi-square contingency $p = 1$).
-// MAVs could also arise because alignment tools (e.g., `bwa mem`) struggle to map reads to low-complexity, repetitive sequence, and introduce base mismatches in the process. 
-// To check if this might be the case, we first extracted the nucleotide context surrounding every SNV in the dataset, including both MAVs and biallelic SNVs.
-// the Shannon entropy of the sequence context surrounding every SNV in the dataset, including both MAVs and biallelic SNVs. 
-// Overall, the sequence context surrounding multi-allelic mutations is no less complex than the context surrounding biallelic mutations.
-
-// Moreover, MAVs at randomly-sampled SNVs occur at sequences with lower sequence complexity than "true" MAVs.
-// This result strongly suggests that "false-positive" MAVs are driven by alignment artifacts at simple repeats/homopolymers, while "empirical" MAVs are driven by something else.
-
 
 // === Differences in sequencing technologies don't appear to explain differences in MAV abundance
 
@@ -238,9 +185,6 @@ We hypothesize that nearly all spurious MAVs occur due to alignment errors in lo
 Using our stringently filtered MAV callset, we measured the degree to which different genotoxins induced multi-allelic variants.
 Compared to the null expectation, MMS caused the greatest enrichment of MAVs in #cel, followed by DMS and EMS.
 It is challenging to attribute these differences in MAV enrichment to the characteristics of specific mutagens, however (see *Discussion*). 
-// #vlk also note that they observed significant batch effects when treating worms with EMS. 
-// As discussed below, if EMS happens to cause greater F1/F2 lethality than MMS or DMS, #vlk would have sequenced fewer (or a less diverse) population of F1 offspring, limiting our ability to detect MAVs.
-// We discuss some other challenges of identifying and interpreting MAV enrichments in the *Discussion.*
 
 #figure(
   image("fig/Figure 4.png", width: 60%),
@@ -253,25 +197,6 @@ It is challenging to attribute these differences in MAV enrichment to the charac
   
 ]
 )
-
-// === Combinatorial genetic diversity
-
-// As reported in Aitken et al. (2020), multi-allelic mutations are not the only consequence of persistent DNA lesions.
-// In a single round of DNA replication, error-prone translesion synthesis polymerases might incorporate an incorrect base opposite a DNA lesion but pass over a nearby lesion _without_ incorporating an incorrect base.
-// As a result, lesions in close proximity can generate "combinatorial" genetic diversity; both mutated sites might appear bi-allelic, but due to inconsistent TLS bypass, they create three or more distinct haplotypes.
-// Across the X strains treated with DMS, EMS, or MMS, we found 63 pairs of SNVs with evidence of combinatorial genetic diversity, providing further evidence that many DNA lesions persist unrepaired from P0 to F1.
-
-// === Greater levels of multi-allelism in NER-deficient strains
-// The longer a lesion persists, the more opportunities it has to become a template for the incorporation of a second "incorrect" base. 
-// We hypothesized that multi-allelism would be more frequent in strains lacking the ability to efficiently remove lesions — i.e., those lacking nucleotide excision repair (NER) or base excision repair (BER) machinery.
-// Most strains mutagenized with EMS did not exhibit higher levels of multi-allelism than expected by random chance. 
-// However, EMS-derived MAVs were significiantly enriched in _xpa-1_ and _xpf-1_ KOs, and and DMS-derived MAVs were significantly enriched in _xpc-1_ and _xpf-1_ KOs.
-// _xpf-1_ mutants are deficient in both global genome nucleotide excision repair (GG-NER) and transcription-coupled NER (TC-NER), while _xpc-1_ mutants are only deficient in the former and _xpa-1_ are deficient in the latter.
-// DMS-derived MAVs were also highly enriched in _polk-1_ mutants, who lack a mostly error-free TLS polymerase. Volkova et al. (2020) postulated that in the absence of _polk-1_, other error-prone TLS polymerases like _rev-3_ must pick up the slack.
-
-// === The multi-allelic mutation spectrum differs across alkylating agents
-
-// The three alkylating agents we tested leave behind different kinds of DNA lesions. EMS is an ethylating agent that primarily creates $O^6$-ethyl guanine lesions, as well as small amounts of $N^3$-ethyl adenine (http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Abstract&list_uids=16748923), while MMS and DMS are both methylating agents that predominantly generate $N^7$-methyl guanine, $N^3$-methyl adenine, and $O^6$-methyl guanine (http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Abstract&list_uids=2195323). Because these three genotoxins preferentially attack different nucleotides, we hypothesized that the  spectrum of MAVs might differ between mutagenized strains.
 
 === A simple model of transgenerational DNA damage
 
@@ -518,3 +443,24 @@ At these randomly-sampled SNVs, we considered any read that passed the above fil
 #bibliography("Paperpile - References - Jun 5.bib", style: "plos")
 
 #include "supp.typ"
+
+
+
+// === Combinatorial genetic diversity
+
+// As reported in Aitken et al. (2020), multi-allelic mutations are not the only consequence of persistent DNA lesions.
+// In a single round of DNA replication, error-prone translesion synthesis polymerases might incorporate an incorrect base opposite a DNA lesion but pass over a nearby lesion _without_ incorporating an incorrect base.
+// As a result, lesions in close proximity can generate "combinatorial" genetic diversity; both mutated sites might appear bi-allelic, but due to inconsistent TLS bypass, they create three or more distinct haplotypes.
+// Across the X strains treated with DMS, EMS, or MMS, we found 63 pairs of SNVs with evidence of combinatorial genetic diversity, providing further evidence that many DNA lesions persist unrepaired from P0 to F1.
+
+// === Greater levels of multi-allelism in NER-deficient strains
+// The longer a lesion persists, the more opportunities it has to become a template for the incorporation of a second "incorrect" base. 
+// We hypothesized that multi-allelism would be more frequent in strains lacking the ability to efficiently remove lesions — i.e., those lacking nucleotide excision repair (NER) or base excision repair (BER) machinery.
+// Most strains mutagenized with EMS did not exhibit higher levels of multi-allelism than expected by random chance. 
+// However, EMS-derived MAVs were significiantly enriched in _xpa-1_ and _xpf-1_ KOs, and and DMS-derived MAVs were significantly enriched in _xpc-1_ and _xpf-1_ KOs.
+// _xpf-1_ mutants are deficient in both global genome nucleotide excision repair (GG-NER) and transcription-coupled NER (TC-NER), while _xpc-1_ mutants are only deficient in the former and _xpa-1_ are deficient in the latter.
+// DMS-derived MAVs were also highly enriched in _polk-1_ mutants, who lack a mostly error-free TLS polymerase. Volkova et al. (2020) postulated that in the absence of _polk-1_, other error-prone TLS polymerases like _rev-3_ must pick up the slack.
+
+// === The multi-allelic mutation spectrum differs across alkylating agents
+
+// The three alkylating agents we tested leave behind different kinds of DNA lesions. EMS is an ethylating agent that primarily creates $O^6$-ethyl guanine lesions, as well as small amounts of $N^3$-ethyl adenine (http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Abstract&list_uids=16748923), while MMS and DMS are both methylating agents that predominantly generate $N^7$-methyl guanine, $N^3$-methyl adenine, and $O^6$-methyl guanine (http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=PubMed&dopt=Abstract&list_uids=2195323). Because these three genotoxins preferentially attack different nucleotides, we hypothesized that the  spectrum of MAVs might differ between mutagenized strains.
