@@ -88,7 +88,7 @@ Most of these strains harbored homozygous loss-of-function (LOF) alleles in gene
 Here, we reanalyze sequencing data from these mutagenesis experiments and find compelling evidence for multi-allelic variants (MAVs) in many strains.
 We are confident that these MAVs are not due to sequencing errors or alignment artifacts.
 Instead, we believe that MAVs arise when a lesion occurs in a parental gamete, is transmitted to an F1, and persists for long enough during embryogenesis to serve as a template for the incorporation of multiple derived alleles. 
-Given the developmental lineage of #cel @Sulston1977-gh @Sulston1983-zz, we estimate that a lesion present in a P0 gamete must persist for at least 4 embryonic F1 cell divisions in order to generate multi-allelism in the gametes of that F1. 
+Given the invariant developmental lineage of #cel @Sulston1977-gh @Sulston1983-zz, we estimate that a lesion present in a P0 gamete must persist for at least 4 embryonic F1 cell divisions in order to generate multi-allelism in the gametes of that F1. 
 Certain mutagens appear to cause greater multi-allelism than others, though the stochastic nature of post-zygotic lesion segregation and the effects of survival bias make it difficult to confidently interpret these differences.
 Nevertheless, our results demonstrate that multiple forms of DNA damage can persist from generation to generation in #cel. 
 These persistent lesions become potent engines of mutagenesis, influencing the genetic diversity of future generations long after they arise.
@@ -125,8 +125,8 @@ After sequencing, #vlk performed read alignment, called single-nucleotide, inser
 In total, the authors identified 135,348 high-confidence single-nucleotide variants (SNVs) in 54 strains treated with genotoxins or maintained in M.A. experiments.
 Here, we limit our analyses to the subset of SNVs observed in strains treated with three alkylating agents: ethyl methanesulfonate (EMS), dimethyl sulfate (DMS), and methyl methanesulfonate (MMS).
 We chose these genotoxins for three reasons: first, because they primarily generated single-nucleotide and multi-nucleotide (as opposed to indel or SV) mutations; second, because they were among the most potent mutagens used in the study; and third, because worms treated with these three genotoxins were mutagenized at the same life stage (young adult; YA). 
-We further filtered the SNVs in EMS, DMS, and MMS-treated strains to remove variants in low-complexity sequences (*Materials and Methods*), producing a final callset of 68,900 alkylation-induced SNVs (@fig-2).
-As discussed above, we would expect each of these SNVs to be biallelic, as each sequenced population of worms was derived from a single F1 animal.
+We further filtered the SNVs in EMS, DMS, and MMS-treated strains to remove variants in annotated low-complexity sequences (*Materials and Methods*), producing a final callset of 68,900 alkylation-induced SNVs (@fig-2).
+As discussed above, we would expect these SNVs to be biallelic, as each sequenced population of worms was derived from a single F1 animal.
 
 
 #figure(
@@ -141,11 +141,11 @@ We found almost two thousand ostensibly biallelic SNVs with support for a "third
 We required candidate MAVs to be supported by at least 3 sequencing reads, producing a callset of 136 high-confidence MAVs out of 68,900 total SNVs (\~0.2%).
 
 #figure(
-  image("fig/Figure 3.png", width: 100%), caption: [*Evidence for multi-allelism at mutated sites in #cel.* *a)* Diagram of aligned Illumina sequencing reads at a single-nucleotide variant observed in a _polk-1_ mutant strain treated with 0.08mM DMS. Sequencing reads are sorted by start position and colored by read orientation (light grey: aligned to the forward strand, dark grey: aligned to the reverse strand). Alleles aligned to the mutated reference nucleotide are colored. For simplicity of visualization, we show a maximum of 50 reads in each subplot. Legend shows the counts of each allele aligned to the forward or reverse strand. *b)* Dotted vertical line shows the number of SNVs at which we observed >=3 reads supporting an MAV. In each of 100 trials, we calculated the number of SNVs at which we observed evidence for multi-allelism using a random strain's sequencing reads. The distribution of "spurious" MAVs identified in each trial is shown as a blue histogram. *c)* We performed the random sampling procedure described in *b)* using varying thresholds on the number of reads required to support a candidate MAV. The blue line shows the number of identified MAVs at each read threshold. The red line shows the enrichment of empirical vs. spurious MAVs identified at each threshold.]
+  image("fig/Figure 3.png", width: 100%), caption: [*Evidence for multi-allelism at mutated sites in #cel.* *a)* Diagram of aligned Illumina sequencing reads at a single-nucleotide variant observed in `CD0203a`, a _polk-1_ mutant strain treated with 0.08mM DMS. Sequencing reads are sorted by start position and colored by read orientation (light grey: aligned to the forward strand, dark grey: aligned to the reverse strand). Read bases aligned to the mutated reference nucleotide are colored. For simplicity of visualization, we show a maximum of 50 reads in each subplot. Legend shows the counts of each allele aligned to the forward or reverse strand. *b)* Dotted vertical line shows the number of SNVs at which we observed >=3 reads supporting an MAV. In each of 100 trials, we calculated the number of SNVs at which we observed evidence for multi-allelism using a random strain's sequencing reads. The distribution of "spurious" MAVs identified in each trial is shown as a grey histogram. *c)* We performed the random sampling procedure described in *b)* using varying thresholds on the number of reads required to support a candidate MAV. The blue line shows the number of MAVs identified at each read threshold. The red line shows the enrichment of empirical vs. spurious MAVs identified at each threshold.]
 ) <fig-3>
 
 We were initially suspicious that MAVs were simply a result of sequencing error or alignment artifacts.
-In each strain, we calculated the number of randomly sampled SNVs at which 3 or more reads supported a non-reference allele (#link(<box-2>, "Box 2"), *Materials and Methods*).
+In each strain, we calculated the number of SNVs at which 3 or more reads supported a non-reference allele in a random strain (#link(<box-2>, "Box 2"), *Materials and Methods*).
 
 #block(
   fill: luma(230),
@@ -155,18 +155,28 @@ In each strain, we calculated the number of randomly sampled SNVs at which 3 or 
 We first searched for multi-allelic evidence at the set of $M$ SNVs (where $|M| = 68,900$) in 763 strains treated with DMS, EMS, or MMS. 
 In a given strain, we we asked whether there were 3+ sequencing reads supporting a 'third' allele at each of the strain's ostensibly biallelic SNVs $S; S in M$. 
 If so, we classified the site as a multi-allelic variant (MAV). 
-We then performed 100 random sampling trials in each strain.
-In each trial, we randomly sampled $R$ from the mutation callset $M in.not S$, such that $|R| = |S|$.
-At each site in $R$, we then asked if there were 3+ sequencing reads supporting a non-reference allele; since these random SNVs should be homozygous reference in the focal strain, we considered any non-reference evidence to be evidence for a "spurious" MAV.]
+
+We then calculated a null expectation for the number of MAVs we'd expect to see in a given strain due to sequencing error, alignment artifacts, and so on.
+For a given strain with $S$ ostensibly biallelic SNVs, we randomly sampled a different strain's read alignments (excluding strains with the same genotype, as some _de novo_ mutations may have occurred in a given strain prior to genotoxin treatment).
+We then used that random strain's alignments to calculate evidence for multi-allelic variation at each of the $S$ variants in the original strain; since a random strain should be homozygous reference at every variant observed in the original strain, we considered any non-reference evidence to be evidence for a "spurious" MAV.
+We repeated this process (randomly sampling a different strain's alignments and re-calculating evidence for spurious MAVs) 100 times.
+One disadvantage of this approach is that it does not completely account for differences in sequencing coverage across the strains.
+In a given trial, we might calculate evidence for spurious MAVs using alignment data from a strain sequenced to 30X coverage, even if the original strain was sequenced to 60X. 
+
+We therefore explored an alternative approach to generate a null expectation for the number of MAVs. 
+In each strain, we randomly sampled $R$ from the mutation callset $M in.not S$, such that $|R| = |S|$.
+At each site in $R$, we then asked if there were 3+ sequencing reads supporting a non-reference allele. 
+This second approach was also imperfect and likely produces an inflated number of "spurious" MAVs.
+In a given strain with $S$ SNVs, we randomly sample $|S|$ mutations from the complete SNV callset; in strains with large $|S|$, we are guaranteed to randomly sample the same sites multiple times over the course of 100 trials.
+Moreover, the majority of mutations in the callset are derived from EMS; thus, "spurious" MAVs will be biased toward sequence contexts that are preferentially damaged by EMS.
+
+Both approaches (either randomly sampling alignments or randomly sampling SNVs) produced similar results, and we consistently observed far more MAVs than expected by chance.]
 ) <box-2>
 
 Compared to this null expectation, MAVs occurred far more often than expected by chance (@fig-3).
-We note that our random sampling strategy is imperfect, and likely produces an inflated number of "spurious" MAVs.
-In a given strain with $S$ SNVs, we randomly sample $S$ mutations from the complete SNV callset; in strains with large $S$, we are guaranteed to randomly sample the same sites multiple times over the course of 100 trials.
-Moreover, the majority of mutations in the callset are derived from EMS; thus, "spurious" MAVs will be biased toward sequence contexts that are preferentially damaged by EMS.
-
 MAVs did not exhibit greater levels of strand bias than biallelic SNVs ($chi^(2)$ $p = 0.34$).
-"Spurious" MAVs (at randomly sampled sites) occurred in lower-complexity sequence than "empirical" MAVs (two-sided Kolmogorov-Smirnov $p = 2.9 times 10^(-10)$), while empirical MAVs and biallelic SNVs occured in similarly high-complexity sequences (two-sided KS $p = 0.12$; #link(<fig-s1>)[Supplementary Fig. 1]).
+Even after removing SNVs in annotated low-complexity regions (*Materials and Methods*), we found that "spurious" MAVs occurred in lower-complexity sequence than "empirical" MAVs (two-sided Kolmogorov-Smirnov $p = 2.9 times 10^(-10)$ #link(<fig-s1>)[Supplementary Fig. 1].
+There was no difference in sequence complexity between empirical MAVs and biallelic SNVs (two-sided KS $p = 0.12$; #link(<fig-s1>)[Supp. Fig. 1]).
 We hypothesize that nearly all spurious MAVs occur due to alignment errors in low-complexity, repetitive regions of the genome.
 
 // === Differences in sequencing technologies don't appear to explain differences in MAV abundance
@@ -182,21 +192,23 @@ We hypothesize that nearly all spurious MAVs occur due to alignment errors in lo
 
 === All tested alkylating agents create multi-allelism
 
-Using our stringently filtered MAV callset, we measured the degree to which different genotoxins induced multi-allelic variants.
-Compared to the null expectation, MMS caused the greatest enrichment of MAVs in #cel, followed by DMS and EMS.
+Using our stringently filtered MAV callset, we measured the degree to which different genotoxins generated multi-allelic variants.
+Compared to the null expectation, MMS caused the greatest enrichment of MAVs in #cel (approximately 0.7% of all MMS-induced SNVs were multi-allelic) (@fig-4).
+A substantial fraction of DMS-induced SNVs were multi-allelic, as well (\~0.5%).
+Despite creating the largest number of SNVs per unit dose, EMS generated relatively few MAVs (\~0.05%).
 It is challenging to attribute these differences in MAV enrichment to the characteristics of specific mutagens, however (see *Discussion*). 
 
 #figure(
   image("fig/Figure 4.png", width: 60%),
   caption: [*Enrichment of MAVs after treatment with three alkylating agents.*
-  Using N strains treated with DMS, EMS, or MMS, we calculated the number of SNVs at which we observed 3 or more reads supporting a multi-allelic variant (MAV).
-  The total number of MAVs we identified in strains treated with a given mutagen is shown as a vertical dotted line.
-  In each of 100 trials, we then randomly sampled $M_i$ biallelic sites from every strain $i$ (where $M_i$ is the number of SNVs observed in strain $i$) from the complete callset of 135,348 SNVs.
-  In each trial, we calculated the total number of MAVs we identified across all strains.
-  The distribution of these "spurious" MAV counts across 100 trials (using strains treated with the specified mutagen) is shown as a blue histogram.
+  Using $N = 736$ strains treated with DMS, EMS, or MMS, we calculated the number of SNVs at which we observed 3 or more reads supporting a multi-allelic variant (MAV).
+  The total number of "empirical" MAVs we identified in strains treated with a given mutagen is shown as a black "plus" sign.
+  We then performed 100 random sampling trials to obtain a null expectation of the number of observed MAVs (see #link(<box-2>, "Box 2")).
+  In each trial, we calculated the total number of "random" MAVs we identified across all strains.
+  The distribution of these random MAV counts across 100 trials (using strains treated with the specified mutagen) is shown using a colored jitterplot.
   
 ]
-)
+) <fig-4>
 
 === A simple model of transgenerational DNA damage
 
@@ -210,20 +222,24 @@ Thus, in YA animals, all sperm are mature gametes that will not undergo mitosis 
   image("fig/Figure 5.png", width:90%), caption: 
   [*Lesions must persist until the $P_4$ cell stage in an F1 to create multi-allelism.*
   In this toy diagram, we track the fate of a single lesion-containing DNA strand during the first few cell divisions of #cel embryogenesis.
-  An F1 zygote might be fertilized by a sperm cell or oocyte that harbors a DNA lesion (shown as a red triangle) on either the forward or reverse strand (the probability of a lesion occurring on both strands at the same nucleotide is very small).
-  If translesion synthesis polymerases pass over that lesion without incorporating an incorrect base, the lesions could feasibly persist into either the AB or $P_1$ cell (the two products of the first embryonic cell division).
+  *a)* Following genotoxin treatment in a young adult (YA) worm, a lesion (shown as a red triangle) is generated in a haploid gamete.
+  Here, a lesion is created at an adenine on the reverse strand of a haploid sperm cell's genome (the probability of a lesion occurring on both strands at the same nucleotide is very small).
+  An F1 zygote might then be fertilized by a sperm cell or oocyte that harbors a DNA lesion.
+  *b)* That sperm-derived lesion could then persist during the first few embryonic cell divisions.
+  If translesion synthesis polymerases pass over the lesion without incorporating an incorrect base, the lesion could persist into either the AB or $P_1$ cell (the two products of the first embryonic cell division).
   If the lesion-containing strand continues to be inherited by germline progenitor cells ($P_2$, $P_3$, and $P_4$) without being removed by repair machinery, it could template the incorporation of multiple unique derived alleles in mature gametes.
-  Critically, if the lesion-containing strand is inherited by the AB cell or any of the non $P$-lineage germline progenitors, it may screate multi-allelism in somatic cells, but not in the gametes produced by this F1.
+  Critically, if the lesion-containing strand is inherited by the AB cell or any of the non $P$-lineage germline progenitors, it may create multi-allelism in somatic cells, but not in the gametes produced by this F1.
+  Similarly, if the lesion templates the incorporation of an incorrect base but is repaired prior to the $P_4$ cell division (see inset), the F1's gametes will be mosaic for a T $#sym.arrow$ C mutation, but this mutation will appear biallelic in future generations.
 ]
 )<fig-5>
 
 Let's next imagine that in a mutagenized P0, a single haploid sperm cell harbors a DNA lesion on a single strand.
-After that sperm cell fertilizes an oocyte, what are the chances its lesion would persist long enough to create multi-allelism in this F1's gametes?
-To answer this question, we can take advantage of the fact that the #cel developmental lineage is completely resolved @Sulston1977-gh @Sulston1983-zz.
+After that sperm cell fertilizes an oocyte, what are the chances its lesion would persist long enough to create multi-allelism in the F1's gametes?
+To answer this question, we can take advantage of the fact that the #cel developmental lineage is invariant and completely resolved @Sulston1977-gh @Sulston1983-zz.
 All #cel gametes are derived from a single germline progenitor cell called $P_4$.
 The $P_4$ cell divides to create $Z_2$ and $Z_3$, which localize to the gonad and give rise to all eventual gametes @Hubbard2005-ky.
 At minimum, in order to generate gametic mosiacism, a lesion-containing strand would need to segregate into the $P_4$ cell without being repaired.
-If it segregates into a somatic precursor cell, the lesion-containing strand may serve as a template for incorrect bases; but these bases will only exist in the soma.
+If it segregates into a somatic precursor cell, the lesion-containing strand may serve as a template for the incorporation of incorrect bases; but these bases will only exist in the soma.
 If the lesion serves as a template for an incorrect nucleotide, but is repaired prior to the $P_4$ cell division, only a single incorrect base has a chance to exist in the germline and the offspring of the F1 will appear to be biallelic (@fig-5).
 
 We believe that this simple model, in which a lesion-containing strand persists for at least four embryonic cell divisions, explains the presence of MAVs in the #vlk dataset.
