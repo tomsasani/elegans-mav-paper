@@ -207,8 +207,8 @@ It is challenging to attribute these differences in MAV enrichment to the charac
   Using $n = 691$ strains treated with DMS, EMS, or MMS, we calculated the proportion of SNVs at which we observed 3 or more reads supporting a multi-allelic variant (MAV).
   The total number of "empirical" MAVs we identified in strains treated with a given mutagen is shown as a black "plus" sign.
   We then performed 100 random sampling trials to obtain a null expectation of the number of observed MAVs (see #link(<box-2>, "Box 2")).
-  In each trial, we calculated the proportion of "random" MAVs we identified across all strains.
-  The distribution of these random MAV proportions across 100 trials (using strains treated with the specified mutagen) is shown using a colored jitterplot.
+  In each trial, we calculated the proportion of "spurious" MAVs we identified across strains treated with the specified mutagen.
+  The distribution of these spurious MAV proportions across 100 trials is shown using a colored jitterplot.
   
 ]
 ) <fig-4>
@@ -250,7 +250,7 @@ At minimum, in order to generate gametic mosaicism, a lesion-containing strand w
 If the lesion undergoes error-free repair prior to the $P_4 #sym.arrow Z_2 / Z_3$ cell division — and never templates the incorporation of an incorrect base — the F1 gametes will only possess a single allele at that site, and any evidence of an inherited lesion will be invisible.
 But what happens if an incorrect base _is_ incorporated opposite the lesion during prior to $P_4$?
 
-For example, let's imagine that the lesion undergoes error-prone translesion synthesis (TLS) prior to $P_4$, and a #wrong_c allele is incorporated opposite the lesion during the $P_3 #sym.arrow P_4$ division.
+For example, let's imagine that the lesion undergoes error-prone translesion synthesis (TLS) and a #wrong_c allele is incorporated opposite the lesion during the $P_3 #sym.arrow P_4$ division.
 If the lesion persists to $P_4$ and is bypassed by error-prone TLS during the $P_4 #sym.arrow Z_2 / Z_3$ division (e.g., if a #wrong_g allele was incorporated during the $P_4 #sym.arrow Z_2$ division), both the first and second incorrect bases ( #wrong_c and #wrong_g ) will be present in mature gametes.
 But if the lesion is repaired prior to the $P_4 #sym.arrow Z_2 / Z_3$ cell division, only a single incorrect base (the #wrong_c allele) will exist in the germline and the offspring of the F1 would appear to be biallelic (see inset in @fig-5).
 If it segregates into a somatic precursor cell during any of the first four cell divisions, the lesion-containing strand could generate multi-allelism, but those multiple alleles would only exist in the soma and would not be present in sequenced F2 progeny.
@@ -448,6 +448,7 @@ After sequencing, these sample barcodes were used to "demultiplex" the reads, as
 However, during Illumina sequencing runs, sample indices can occasionally "hop" from one sample to another on a flow cell, meaning that reads from one sample can be incorrectly assigned  to another sample. 
 To test for the possibility that index hopping could explain the presence of MAVs in our datasets, we iterated over each of the 139 MAVs we identified in strains treated with DMS, EMS, and MMS. 
 At each MAV, we searched for evidence of the non-reference alleles in every other strain's alignments (n = 2,713) using `pysam` @Pysam.
+We did not find any evidence that non-reference alleles at MAVs were segregating in other #vlk strains.
 
 ==== Measuring strand bias
 At every biallelic SNV, we counted the number of reads supporting the alternate allele that were aligned to the forward and reverse strand.
@@ -458,7 +459,7 @@ binom = ss.binomtest($n_fwd, $n_fwd + $n_rev, p=0.5)
 ```
 
 We considered a site with a binomial $p < 0.05$ to have significant strand bias.
-At every candidate multi-allelic variant, we performed a similar test for strand bias using the number of reads supporting the "third" allele (i.e., neither the reference nor the alternate allele) aligned to the forward or reverse strand.
+At every candidate multi-allelic variant, we performed a similar test for strand bias using the number of reads supporting the "third" allele (i.e., neither the reference nor the alternate allele).
 We then compared the count of strand-biased sites in the biallelic and multi-allelic callsets using a Chi-square contingency table:
 
 \
@@ -501,7 +502,7 @@ To test for the effects of both sequencing coverage and sequencing platform on M
               -o /path/to/output.cram \
               /path/to/input.cram
 ```
-where `$downsampling_factor` was calculated as $max(0.999, (30/D_i))$, where $D_i$ is the average genome-wide depth in strain $i$.
+where `$downsampling_factor` was calculated as $min(0.999, (30/D_i))$, where $D_i$ is the average genome-wide depth in strain $i$.
 We then searched for MAVs in each strain as described above, using downsampled CRAMs in place of the strains' original CRAMs.
 We note that our downsampling experiments are imperfect, because we searched for MAVs at the ostensibly biallelic SNVs originally identified in #vlk.
 These SNVs were called from the original alignments for each strain (which, in some cases, were sequenced to very high depth). 
