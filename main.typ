@@ -40,8 +40,8 @@ Because each strain was derived from a single F1 animal — the offspring of a m
 Lesions present in a parental gamete are transmitted to an F1 zygote, persist for at least four embryonic cell divisions, and later serve as templates for the incorporation of multiple _de novo_ alleles during gametogenesis.
 Gametic mosaicism then manifests as multi-allelism in the sequenced progeny of those F1s. 
 Given the life stage at which  worms were mutagenized, we hypothesize that lesions were primarily inherited from parental sperm cells.
-These results strongly suggest that DNA lesions are inherited from gamete to zygote in #cel, and generate multi-allelic variation in subsequent generations.
-DNA damage in the early embryo may be a source of multi-allelic mutations in humans, as well.
+These results strongly suggest that DNA lesions are inherited from gamete to zygote in #cel and generate multi-allelic variation in subsequent generations.
+// DNA damage in the early embryo may be a source of multi-allelic mutations in humans, as well.
 
 == Introduction
 
@@ -206,7 +206,7 @@ It is challenging to attribute these differences in MAV enrichment to the charac
   caption: [*Enrichment of MAVs after treatment with three alkylating agents.*
   Using $n = 691$ strains treated with DMS, EMS, or MMS, we calculated the proportion of SNVs at which we observed 3 or more reads supporting a multi-allelic variant (MAV).
   The total number of "empirical" MAVs we identified in strains treated with a given mutagen is shown as a black "plus" sign.
-  We then performed 100 random sampling trials to obtain a null expectation of the number of observed MAVs (see #link(<box-2>, "Box 2")).
+  We then performed 100 random sampling trials to obtain a null expectation for the number of observed MAVs (see #link(<box-2>, "Box 2")).
   In each trial, we calculated the proportion of "spurious" MAVs we identified across strains treated with the specified mutagen.
   The distribution of these spurious MAV proportions across 100 trials is shown using a colored jitterplot.
   
@@ -217,7 +217,7 @@ It is challenging to attribute these differences in MAV enrichment to the charac
 
 Convinced that these multi-allelic mutations were real sequence variants, we next considered how they might occur.
 Let's first assume that genotoxin treatment occurs at the young adult stage (YA) in a P0 animal.
-In #cel hermaphrodites, spermatogenesis and oogenesis occur in sequence; spermatogenesis begins late in the third larval stage (L3) and completes by the end of L4, while oogenesis begins in adulthood @Hubbard2005-ky.
+In #cel hermaphrodites, spermatogenesis and oogenesis occur in sequence; spermatogenesis begins and ends during the L4 larval stage, while oogenesis begins in adulthood @Hubbard2005-ky.
 Thus, in YA animals, all sperm are mature gametes that will not undergo mitosis before fertilizing a zygote.
 
 
@@ -227,12 +227,12 @@ Thus, in YA animals, all sperm are mature gametes that will not undergo mitosis 
   In this toy diagram, we track the fate of a single lesion-containing DNA strand during the first few cell divisions of #cel embryogenesis.
   *a)* Following genotoxin treatment in a young adult (YA) worm, a lesion (shown as a red triangle) is generated in a haploid gamete.
   Here, a lesion is created at an adenine on the reverse strand of a haploid sperm cell's genome (the probability of a lesion occurring on both strands at the same nucleotide is very small).
-  An F1 zygote is then be fertilized by the sperm cell that harbors a DNA lesion.
+  An F1 zygote is then fertilized by the sperm cell that harbors a DNA lesion.
   *b)* The sperm-derived lesion could persist during the first few F1 embryonic cell divisions.
   If the lesion is not repaired, and/or translesion synthesis polymerases pass over the lesion without incorporating an incorrect base, the lesion could persist into either the AB or $P_1$ cell (the two products of the first embryonic cell division).
   If the lesion-containing strand continues to be inherited by germline progenitor cells ($P_2$, $P_3$, and $P_4$) without being repaired, it could template the incorporation of multiple unique derived alleles in mature gametes.
-  Critically, if the lesion-containing strand is inherited by the AB cell or any of the non $P$-lineage germline progenitors, it may generate multi-allelism in the soma, but the subsequent generation will inherit a maximum of two alleles at this site.
-  Similarly, if the lesion templates the incorporation of an incorrect base but is repaired prior to the $P_4$ cell division (see inset), the F1's gametes will be mosaic for a T $#sym.arrow$ C mutation, but this mutation will appear biallelic in future generations.
+  Critically, if the lesion-containing strand is inherited by the AB cell or any of the non $P$-lineage cells, it may generate multi-allelism in the soma, but _not_ in the germline.
+  Similarly, if the lesion templates the incorporation of an incorrect base but is repaired prior to the $P_4$ cell division (see inset), the F1's gametes will be mosaic for both T and A alleles, and the T #sym.arrow C mutation will appear biallelic in future generations.
 ]
 )<fig-5>
 
@@ -251,7 +251,7 @@ If the lesion undergoes error-free repair prior to the $P_4 #sym.arrow Z_2 / Z_3
 But what happens if an incorrect base _is_ incorporated opposite the lesion during prior to $P_4$?
 
 For example, let's imagine that the lesion undergoes error-prone translesion synthesis (TLS) and a #wrong_c allele is incorporated opposite the lesion during the $P_3 #sym.arrow P_4$ division.
-If the lesion persists to $P_4$ and is bypassed by error-prone TLS during the $P_4 #sym.arrow Z_2 / Z_3$ division (e.g., if a #wrong_g allele was incorporated during the $P_4 #sym.arrow Z_2$ division), both the first and second incorrect bases ( #wrong_c and #wrong_g ) will be present in mature gametes.
+If the lesion persists to $P_4$ and is again bypassed by error-prone TLS during the $P_4 #sym.arrow Z_2 / Z_3$ division (e.g., if a #wrong_g allele was incorporated during the $P_4 #sym.arrow Z_2$ division), both the first and second incorrect bases ( #wrong_c and #wrong_g ) will be present in mature gametes.
 But if the lesion is repaired prior to the $P_4 #sym.arrow Z_2 / Z_3$ cell division, only a single incorrect base (the #wrong_c allele) will exist in the germline and the offspring of the F1 would appear to be biallelic (see inset in @fig-5).
 If it segregates into a somatic precursor cell during any of the first four cell divisions, the lesion-containing strand could generate multi-allelism, but those multiple alleles would only exist in the soma and would not be present in sequenced F2 progeny.
 We believe that this simple model, in which a lesion-containing strand persists for at least four embryonic cell divisions, explains the presence of MAVs in the #vlk dataset.
@@ -265,7 +265,7 @@ While we've long known that parental DNA damage is repaired by the early embryo 
 === How likely is gametic mosaicism due to inherited lesions?
 
 The probability that a DNA lesion occurs on both strands at the same nucleotide in a P0 gamete (or, that it occurs at the same nucleotide in both gametes) is extremely small.
-Thus, we can safely assume that a given MAV is caused by the presence of a single lesion in a fertilized zygote.
+Thus, we can safely assume that a given MAV is caused by the presence of a single lesion on a single DNA strand in a fertilized zygote.
 We can also estimate the probability that a lesion-containing strand would persist until the $P_4$ cell stage.
 Assuming the lesion evades DNA repair machinery during each cell cycle, there is a 50% chance the lesion-containing strand will be inherited from a zygote to the $P_1$ cell, a 50% chance it will be inherited from $P_1$ to $P_2$, and so on (@fig-5).
 Thus, the probability that a lesion is inherited by the $P_4$ cell (conditional on its persistence to that cell stage) is simply $0.5^4 = 0.0625$.
@@ -284,16 +284,16 @@ We therefore suspect that the early zygote inherits much more damage than is sug
 
 === Missing MAVs due to survival bias
 MAVs might also be invisible due to the strength of genotoxin treatment. If a P0 animal were treated with an extremely high dose of mutagen, the F2 progeny of a heterozygous F1 could exhibit very high embryonic lethality as a consequence of newly homozygous null alleles.
-If an F1's gametes are mosaic for multiple derived alleles at a given site, fewer F2 progeny provide us fewer opportunities to observe an "extra" allele at a given site.
+If an F1's gametes are mosaic for multiple derived alleles at a given site, fewer F2 progeny provide us with fewer opportunities to observe those "extra" alleles.
 In other words, MAV detection is complicated by survivor bias; high mutagen doses create more lesions, and these lesions might generate multi-allelic variation, but those multiple alleles may not segregate into living offspring.
-Ultimately, then, our ability to detect MAVs is dependent on at least three distinct factors: 1) the random segregation of lesion-containing strands into somatic or germline progenitors, 2) the efficiency of lesion repair in the early embryo (i.e., the duration of lesion persistence), and 3) the relative fertility of the F1 and its progeny following mutagen exposure.
+Ultimately, then, our ability to detect MAVs depends on at least three distinct factors: 1) the random segregation of lesion-containing strands into germline progenitors, 2) the efficiency of lesion repair in the early embryo (i.e., the duration of lesion persistence), and 3) the relative fertility of the F1 and its progeny following mutagen exposure.
 
 
 === What mechanisms likely lead to multi-allelism?
 
 As suggested in previous studies of lesion segregation @Aitken2020-fy @Anderson2024-fl, we hypothesize that multi-allelic variants arise from error-prone replication over persistent lesions.
 In #cel, translesion synthesis is the preferred method for DNA damage bypass in the early embryo @Roerink2012-ow.
-Roerink _et al._ (2012) hypothesize that TLS, as opposed to error-free repair via nucleotide excision repair (NER), is preferred when the rate of cell division is high (as it is in the early embryo).
+Roerink _et al._ (2012) hypothesize that TLS, as opposed to error-free repair via nucleotide excision repair (NER), is preferred when the rate of cell division is high (as it is during early embryogenesis).
 What's more, #cel suppress DNA damage checkpoint activation during the first few embryonic cell divisions, and rely on TLS polymerases to prevent replication fork collapse @Holway2006-pd.
 The same appears to be true in _Xenopus_ and _Drosophila_ @Lo-Furno2022-zq @Kermi2015-nd, suggesting that the rapidly dividing early embryo is unable to perform proper quality control and instead relies on TLS to bypass DNA damage that would otherwise stall the cell cycle @Ohkumo2006-em.
 In worms that have not been treated with genotoxin, it remains to be seen whether endogenous DNA damage is likely to persist, or if damage that accumulates during zygotic genome activation @Butuci2015-xv could cause MAVs, as well.
@@ -306,7 +306,7 @@ Despite causing the highest number of mutations per unit dose (@fig-2), EMS trea
 Without additional experimental data, it is difficult to conclusively say whether genotoxins like DMS and MMS are more potent engines of multi-allelism or create longer-lasting DNA lesions.
 As discussed above, our ability to detect MAVs relies on a combination of factors: the chance segregation of lesion-containing strands into germline progenitors, the efficiency of embryonic DNA repair, and the lethality induced by a mutagen itself.
 Mutagens like EMS almost exclusively create C:G #sym.arrow T:A mutations, and often generate premature stop codons, strong loss-of-function, and null alleles @Kutscher2014-ei @Flibotte2010-an.
-EMS mutagenesis may therefore prove more lethal to F2+ progeny, limiting our ability to sequence the full complement of _de novo_ alleles present in an F1's germline.
+EMS mutagenesis may therefore prove more lethal to F2+ progeny, limiting our ability to sequence the full complement of _de novo_ alleles present in an EMS-treated F1's germline.
 While we likely failed to observe many of these large-effect alleles due to survivor bias (any worms with lethal null alleles were not sequenced), we did find that EMS-derived SNVs occurred at more conserved nucleotides in the #cel genome (#link(<fig-s3>)[Supp. Fig. 3]).
 
 Moreover, our analysis in this manuscript deals only with single-nucleotide mutations; the mutagens we analyzed also create insertions, deletions, and larger structural variants @Volkova2020-gt.
@@ -318,7 +318,7 @@ The #vlk dataset is extremely powerful, though it leaves one important question 
 Wang et al. (2023) @Wang2023-lg hypothesize that the compacted chromatin architecture of #cel sperm @Marchetti2007-rh render them incapable of repairing damage caused by ionizing radiation. 
 Indeed, prior work has shown that mature #cel sperm have a limited ability to respond to DNA damage, including oxidative stress @Smith2013-is.
 In this study, we analyzed alkylating mutagens that were applied to P0 hermaphrodites at the young adult (YA) stage of development.
-At this time point, #cel spermatogenesis is complete (having begun at the early L3 stage and ended at late L4), and mature sperm will not undergo any additional cell divisions before they fertilize F1 zygotes @Hubbard2005-ky.
+At this time point, #cel spermatogenesis is complete (having begun and ended in the L4 stage), and mature sperm will not undergo any additional cell divisions before they fertilize F1 zygotes @Hubbard2005-ky.
 Oocytes, on the other hand, begin oogenesis after spermatogenesis and continually divide into adulthood. 
 As a result, it seems likely that most MAVs are caused by persistent lesions inherited from #cel sperm, as these lesions will not have had an opportunity to be repaired prior to fertilization.
 Supporting this hypothesis, Wang _et al._ reported embryonic lethality in the offspring of males irradiated at the late L4 stage (when spermatogenesis is complete), but not in the offspring of males irradiated at the late L3 or early L4 stage (when spermatogenesis is ongoing) @Wang2023-lg. 
@@ -349,7 +349,7 @@ We are excited to investigate the role that persistent, transgenerational DNA da
 
 == Acknowledgments
 
-We thank Drs. Bettina Meier and Anton Gartner for assisting with data access, and Dr. Gartner for helpful feedback on our initial findings as well as an early draft of the manuscript. We also thank members of the Quinlan Lab for helpful discussions and brainstorming. We thank funding CHPC.
+We thank Drs. Bettina Meier and Anton Gartner for assisting with data access, and Dr. Gartner for helpful feedback on our initial findings. We also thank members of the Quinlan Lab for helpful discussions and brainstorming. We thank funding (cite grant number) from the University of Utah Center for High Performance Computing.
 
 
 == Materials and Methods
