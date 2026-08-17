@@ -36,7 +36,7 @@
 #image("fig/Supp. Fig. 2.png", width: 60%, )
 #set align(left)
 #set text(size: 10pt)
-#block([Supplementary Figure 2: *Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 139 "empirical" MAVs and $n$ = 235 "spurious" MAVs identified using a random strain's sequencing reads). We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV. We also calculated the entropy of the 20bp nucleotide context surrounding all $n = 68,858$ biallelic SNVs (excluding MAVs) observed in DMS, EMS, and MMS-treated strains.])<fig-s2>
+#block([Supplementary Figure 2: *Empirical MAVs occur in higher-complexity sequences than spurious MAVs*. We used `mutyper` @DeWitt2020-xm to extract the flanking 10 nucleotides of sequence context surrounding every MAV with at least three reads of support (including $n$ = 139 "empirical" MAVs and $n$ = 325 "spurious" MAVs identified using a random strain's sequencing reads). We then calculated the Shannon entropy of the 20bp nucleotide context (excluding the mutated nucleotide) at each MAV. We also calculated the entropy of the 20bp nucleotide context surrounding all $n = 68,657$ biallelic SNVs (excluding MAVs) observed in DMS, EMS, and MMS-treated strains.])<fig-s2>
 
 \
 
@@ -44,4 +44,4 @@
 #image("fig/Supp. Fig. 3.png", width: 60%, )
 #set align(left)
 #set text(size: 10pt)
-#block([Supplementary Figure 3: *EMS-derived mutations occur in more conserved regions of the genome.* We measured the phyloP (cite) score (using the `phyloP135way` track for the `ce11` reference assembly, downloaded from the UCSC Table Browser) at every SNV identified in strains treated with DMS, EMS, and MMS in #vlk. Here, we show the cumulative fraction of SNVs with a phyloP score of at least $x$. Two-sided Kolmogorov-Smirnov $p$-values from comparisons of phyloP score distributions between DMS and EMS: $9.0 times 10^(-14)$; between DMS and MMS: $0.15$; between MMS and EMS: $1.7 times 10^(-27)$. ])<fig-s3>
+#block([Supplementary Figure 3: *EMS-derived mutations occur in more conserved regions of the genome.* We measured the phyloP (cite) score (using the `phyloP135way` track for the `ce11` reference assembly, downloaded from the UCSC Table Browser) at every SNV identified in strains treated with DMS, EMS, and MMS in #vlk. Here, we show the cumulative fraction of SNVs with a phyloP score of at least $x$. Two-sided Kolmogorov-Smirnov $p$-values from comparisons of phyloP score distributions between DMS and EMS: $2.3 times 10^(-13)$; between DMS and MMS: $0.3$; between MMS and EMS: $1.9 times 10^(-28)$. ])<fig-s3>
